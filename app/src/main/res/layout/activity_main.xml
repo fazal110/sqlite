@@ -6,15 +6,42 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/_id"
+        android:hint="Enter your id"/>
+
    <EditText
-       android:layout_width="wrap_content"
-       android:layout_height="45dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:id="@+id/text"
        android:hint="EntereText"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn"/>
+        android:id="@+id/btn"
+        android:text="Insert" />
+
+    <Button
+        android:onClick="Update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/buttonupdate" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE ALL"
+        android:onClick="DeleteAll"
+        android:id="@+id/buttondelete" />
+
+</LinearLayout>
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
