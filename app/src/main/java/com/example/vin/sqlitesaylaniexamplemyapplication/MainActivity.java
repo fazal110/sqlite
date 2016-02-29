@@ -1,10 +1,7 @@
 package com.example.vin.sqlitesaylaniexamplemyapplication;
 
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +10,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     BAL bal;
@@ -31,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listview);
         bal = new BAL(this);
         showStudent();
-        final StudentBeen been = new StudentBeen();
+        final DataBeen been = new DataBeen();
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                been.setStudentName(mEditText.getText().toString());
-                bal.insertStudent(been);
+                been.setClassifTitle(mEditText.getText().toString());
+                SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+                String date = dateformat.format(new Date());
+                been.setClaassifdateTime(date);
+                been.setClassifUpdatedDateTime(been.getClaassifdateTime());
+                bal.InsertData(been);
                 showStudent();
             }
         });
@@ -74,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+/*
     public void Update(View view){
         try{
-            StudentBeen been = new StudentBeen();
+            DataBeen been = new DataBeen();
             been.setStudentID(Integer.valueOf(mEditText_id.getText().toString()));
             been.setStudentName(mEditText.getText().toString());
             boolean isupdated = bal.UpdateStudent(been);
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void showStudent(){
         mArrayList = bal.getAllStudent();

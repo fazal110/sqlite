@@ -17,11 +17,13 @@ public class BAL {
         db = new DBConnect(context);
     }
 
-    public  Long insertStudent(StudentBeen been){
+    public  Long InsertData(DataBeen been){
         try{
             SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(DBConnect.COL_2, been.getStudentName());
+            contentValues.put(DBConnect.COL_2, been.getClassifTitle());
+            contentValues.put(DBConnect.COL_3, been.getClaassifdateTime());
+            contentValues.put(DBConnect.COL_4, been.getClassifUpdatedDateTime());
             sqLiteDatabase.insert(DBConnect.TABLE_NAME, null, contentValues);
             sqLiteDatabase.close();
 
@@ -30,20 +32,21 @@ public class BAL {
         }
         return (long)0;
     }
-
-    public  boolean UpdateStudent(StudentBeen been){
+/*
+    public  boolean UpdateStudent(DataBeen been){
         try{
             SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put("studentID", been.getStudentID());
             contentValues.put("studentName", been.getStudentName());
+            contentValues.put("studentage", been.getStudentage());
             sqLiteDatabase.update("student", contentValues, "studentID = ?", new String[]{been.getStudentID() + ""});
             sqLiteDatabase.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         return true;
-    }
+    }*/
 
     public int deleteRecord(String id)
     {
@@ -67,11 +70,13 @@ public class BAL {
             Cursor cursor = sqLiteDatabase.rawQuery(query,null);
             if(cursor.getCount() >0){
                 while (cursor.moveToNext()){
-                    StudentBeen been = new StudentBeen();
-                    been.setStudentID(cursor.getInt(0));
-                    been.setStudentName(cursor.getString(1));
-                    System.out.print("id======================"+been.getStudentID());
-                    arrayList.add(String.valueOf(been.getStudentID())+":  " + been.getStudentName());
+                    DataBeen been = new DataBeen();
+                    been.setClassifId(cursor.getInt(0));
+                    been.setClassifTitle(cursor.getString(1));
+                    been.setClaassifdateTime(cursor.getString(2));
+                    been.setClassifUpdatedDateTime(cursor.getString(3));
+                    //System.out.print("id======================"+been.getStudentID());
+                    arrayList.add(been.getClassifTitle()+" DateTime :"+been.getClaassifdateTime());
 
                 }
             }
@@ -90,11 +95,11 @@ public class BAL {
             Cursor cursor = sqLiteDatabase.rawQuery(query,null);
             if(cursor.getCount() >0){
                 while (cursor.moveToNext()){
-                    StudentBeen been = new StudentBeen();
-                    been.setStudentID(cursor.getInt(0));
-                    been.setStudentName(cursor.getString(1));
-                    System.out.print("id======================" + been.getStudentID());
-                    arrayList.add(been.getStudentID()+"");
+                    DataBeen been = new DataBeen();
+                    been.setClassifId(cursor.getInt(0));
+                    been.setClassifTitle(cursor.getString(1));
+                    System.out.print("id======================" + been.getClassifTitle());
+                    arrayList.add(been.getClassifId()+"");
 
                 }
             }

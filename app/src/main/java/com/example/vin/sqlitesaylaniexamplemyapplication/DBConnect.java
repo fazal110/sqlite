@@ -9,11 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBConnect extends SQLiteOpenHelper {
 
-    public static String DB_NAME = "Saylani_DB";
+    public static String DB_NAME = "Cuny_DB";
     public static int DB_VERSION = 1;
-    public static String TABLE_NAME = "student";
-    public static String COL_1 = "studentID";
-    public static String COL_2 = "studentName";
+    public static String TABLE_NAME = "ClassificationMaster";
+    public static String COL_1 = "ClassificationID";
+    public static String COL_2 = "ClassificationTitle";
+    public static String COL_3 = "AddedDateTime";
+    public static String COL_4 = "LastUpdatedDateTime";
+
 
     public DBConnect(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -21,7 +24,8 @@ public class DBConnect extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String table = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+"("+COL_1+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+COL_2+" TEXT)";
+        String table = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+"("+COL_1+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+COL_2+" TEXT, "
+        +COL_3+" TEXT, "+COL_4+" TEXT)";
         db.execSQL(table);
     }
 
